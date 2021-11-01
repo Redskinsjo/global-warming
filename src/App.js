@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import Earth from "./components/Earth";
+import styled from "styled-components";
+import HeroSection from "./components/HeroSection";
+
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <Suspense fallback={<div style={{ color: "white" }}>Loading...</div>}>
+        <HeroSection />
+        <Canvas>
+          <Earth />
+        </Canvas>
+      </Suspense>
+    </AppContainer>
   );
 }
 
